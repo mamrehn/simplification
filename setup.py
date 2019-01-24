@@ -56,7 +56,9 @@ ddirs = []
 if "linux" in sys.platform:
     # from http://stackoverflow.com/a/10252190/416626
     # the $ORIGIN trick is not perfect, though
-    ldirs = ["-Wl,-rpath", "-Wl,$ORIGIN"]
+    # from https://github.com/cocodataset/cocoapi/issues/94
+    # the x86_64-linux-gnu trick might also not be perfect, though
+    ldirs = ["-Wl,-rpath", "-Wl,$ORIGIN", "-L/usr/lib/x86_64-linux-gnu/"]
     platform_lib = "librdp.so"
 if sys.platform == 'darwin':
     # You must compile your binary with rpath support for this to work
